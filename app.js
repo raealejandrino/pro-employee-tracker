@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const sqlQuery = require('./utils/query');
-
 const promptUser = () => {
     return inquirer.prompt(
         {
