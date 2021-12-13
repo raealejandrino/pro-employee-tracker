@@ -75,6 +75,15 @@ class Queries {
 
         return db.query(sql, params);
     }
+
+    addRole(params) {
+        const sql = `INSERT INTO roles (title, salary, department_id)
+                    VALUES
+                    (?,?,?);`
+
+
+        return db.query(sql, params);
+    }
 };
 
 module.exports = Queries;
