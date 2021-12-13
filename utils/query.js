@@ -6,16 +6,17 @@ class Queries {
     viewDepartments() {
         const sql = `SELECT * FROM department;`
 
-        db.query(sql, (err, rows) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
+        // db.query(sql, (err, rows) => {
+        //     if (err) {
+        //         console.log(err);
+        //         return;
+        //     }
 
             
-            console.table(rows)
-        });
+        //     console.table(rows)
+        // });
 
+        return db.query(sql);
         
         
     }
@@ -26,14 +27,16 @@ class Queries {
                     LEFT JOIN department 
                     ON roles.department_id = department.id;`
 
-        db.query(sql, (err, rows) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
+        // db.query(sql, (err, rows) => {
+        //     if (err) {
+        //         console.log(err);
+        //         return;
+        //     }
 
-            console.table(rows);
-        });
+        //     console.table(rows);
+        // });
+
+        return db.query(sql);
     }
 
     viewEmployees() {
@@ -43,14 +46,16 @@ class Queries {
                     LEFT JOIN department ON roles.department_id = department.id 
                     LEFT JOIN employees AS employs ON employees.manager_id = employs.id;`
 
-        db.query(sql, (err, rows) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
+        // db.query(sql, (err, rows) => {
+        //     if (err) {
+        //         console.log(err);
+        //         return;
+        //     }
 
-            console.table(rows);
-        });
+        //     console.table(rows);
+        // });
+
+        return db.query(sql);
     }
 
     addDepartment(params) {
@@ -59,14 +64,16 @@ class Queries {
                         (?);`
         
         
-        db.query(sql, params, (err, rows) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
+        // db.query(sql, params, (err, rows) => {
+        //     if (err) {
+        //         console.log(err);
+        //         return;
+        //     }
 
-            console.log('Success.');
-        });
+        //     console.log('Success.');
+        // });
+
+        return db.query(sql, params);
     }
 };
 

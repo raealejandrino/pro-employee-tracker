@@ -39,7 +39,10 @@ const recursivePrompt = () => {
             if (promptData.options === 'View all departments') {
                 let newQuery = new sqlQuery();
     
-                return newQuery.viewDepartments();
+                newQuery.viewDepartments().then((rows) => {
+                    console.table(rows);
+                    recursivePrompt();
+                });
 
                 
             }
@@ -47,13 +50,19 @@ const recursivePrompt = () => {
             if (promptData.options === 'View all roles') {
                 let newQuery = new sqlQuery();
     
-                newQuery.viewRoles();
+                newQuery.viewRoles().then((rows) => {
+                    console.table(rows);
+                    recursivePrompt();
+                });
             }
     
             if (promptData.options === 'View all employees') {
                 let newQuery = new sqlQuery();
     
-                newQuery.viewEmployees();
+                newQuery.viewEmployees().then((rows) => {
+                    console.table(rows);
+                    recursivePrompt();
+                });
             }
     
             if (promptData.options === 'Add department') {
@@ -63,7 +72,10 @@ const recursivePrompt = () => {
     
                             let newQuery = new sqlQuery();
     
-                            newQuery.addDepartment(departmentPromptData.departmentInput);
+                            newQuery.addDepartment(departmentPromptData.departmentInput).then(() => {
+                                console.log('Successfully added department.');
+                                recursivePrompt();
+                            });
     
                     });
                 
