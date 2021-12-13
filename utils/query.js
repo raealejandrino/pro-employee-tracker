@@ -3,6 +3,11 @@ const cTable = require('console.table');
 
 
 class Queries {
+    getDepartmentName() {
+        const sql = `SELECT department.department_name FROM department;`
+
+        return db.query(sql);
+    }
     viewDepartments() {
         const sql = `SELECT * FROM department;`
 
@@ -81,6 +86,22 @@ class Queries {
                     VALUES
                     (?,?,?);`
 
+
+        return db.query(sql, params);
+    }
+
+    addEmployee(params) {
+        const sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
+                    VALUES
+                        (?,?,?,?)`
+
+        return db.query(sql, params);
+    }
+
+    updateEmployee(params) {
+        const sql = `UPDATE employees 
+                    SET role_id = ?
+                    WHERE id = ?`
 
         return db.query(sql, params);
     }
