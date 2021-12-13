@@ -12,11 +12,12 @@ class Queries {
                 return;
             }
 
-            // console.log(rows);
+            
             console.table(rows)
         });
 
-        console.log("success");
+        
+        
     }
 
     viewRoles() {

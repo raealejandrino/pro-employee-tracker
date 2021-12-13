@@ -10,7 +10,8 @@ const promptUser = () => {
             message: 'What would you like to do?',
             choices: ['View all departments', 'View all roles', 'View all employees', 'Add department']
         }
-    );
+    )
+    
 };
 
 const addDepartmentPrompt = () => {
@@ -31,41 +32,52 @@ const addDepartmentPrompt = () => {
     )
 };
 
-promptUser()
-    .then(promptData => {
-        if (promptData.options === 'View all departments') {
-            let newQuery = new sqlQuery();
+const recursivePrompt = () => {
 
-            newQuery.viewDepartments();
-        }
+    promptUser()
+        .then(promptData => {
+            if (promptData.options === 'View all departments') {
+                let newQuery = new sqlQuery();
+    
+                return newQuery.viewDepartments();
 
-        if (promptData.options === 'View all roles') {
-            let newQuery = new sqlQuery();
+                
+            }
+    
+            if (promptData.options === 'View all roles') {
+                let newQuery = new sqlQuery();
+    
+                newQuery.viewRoles();
+            }
+    
+            if (promptData.options === 'View all employees') {
+                let newQuery = new sqlQuery();
+    
+                newQuery.viewEmployees();
+            }
+    
+            if (promptData.options === 'Add department') {
+                addDepartmentPrompt()
+                    .then(departmentPromptData => {
+                        
+    
+                            let newQuery = new sqlQuery();
+    
+                            newQuery.addDepartment(departmentPromptData.departmentInput);
+    
+                    });
+                
+            }
+    
+    
+    
+        })
+        .catch( err => {
+            console.log(err);
+        });
 
-            newQuery.viewRoles();
-        }
+    
+    
+}
 
-        if (promptData.options === 'View all employees') {
-            let newQuery = new sqlQuery();
-
-            newQuery.viewEmployees();
-        }
-
-        if (promptData.options === 'Add department') {
-            addDepartmentPrompt()
-                .then(departmentPromptData => {
-                    
-
-                        let newQuery = new sqlQuery();
-
-                        newQuery.addDepartment(departmentPromptData.departmentInput);
-
-                });
-            // let newQuery = new sqlQuery();
-
-            // newQuery.viewEmployees();
-        }
-
-
-
-    });
+recursivePrompt();
