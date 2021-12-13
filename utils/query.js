@@ -28,6 +28,7 @@ class Queries {
         db.query(sql, (err, rows) => {
             if (err) {
                 console.log(err);
+                return;
             }
 
             console.table(rows);
@@ -44,9 +45,26 @@ class Queries {
         db.query(sql, (err, rows) => {
             if (err) {
                 console.log(err);
+                return;
             }
 
             console.table(rows);
+        });
+    }
+
+    addDepartment(params) {
+        const sql = `INSERT INTO department (department_name)
+                    VALUES
+                        (?);`
+        
+        
+        db.query(sql, params, (err, rows) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            console.log('Success.');
         });
     }
 };
