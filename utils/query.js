@@ -18,6 +18,21 @@ class Queries {
 
         console.log("success");
     }
+
+    viewRoles() {
+        const sql = `SELECT roles.id, roles.title, roles.salary, department.department_name 
+                    FROM roles 
+                    LEFT JOIN department 
+                    ON roles.department_id = department.id;`
+
+        db.query(sql, (err, rows) => {
+            if (err) {
+                console.log(err);
+            }
+
+            console.table(rows);
+        });
+    }
 };
 
 module.exports = Queries;

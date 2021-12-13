@@ -6,7 +6,7 @@ const promptUser = () => {
             type: 'list',
             name: 'options',
             message: 'What would you like to do?',
-            choices: ['View all departments']
+            choices: ['View all departments', 'View all roles']
         }
     );
 };
@@ -18,4 +18,11 @@ promptUser()
 
             newQuery.viewDepartments();
         }
+
+        if (promptData.options === 'View all roles') {
+            let newQuery = new sqlQuery();
+
+            newQuery.viewRoles();
+        }
+
     });
