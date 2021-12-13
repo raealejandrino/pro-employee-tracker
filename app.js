@@ -8,7 +8,7 @@ const promptUser = () => {
             type: 'list',
             name: 'options',
             message: 'What would you like to do?',
-            choices: ['View all departments', 'View all roles', 'View all employees', 'Add department', 'Add role', 'Add employee']
+            choices: ['View all departments', 'View all roles', 'View all employees', 'Add department', 'Add role', 'Add employee', 'Update employee role']
         }
     )
     
@@ -69,7 +69,7 @@ const addRolePrompt = departmentNames => {
     ])
 };
 
-const addEmployeePrompt = () => {
+const addEmployeePrompt = (employeeRoles) => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -101,7 +101,7 @@ const addEmployeePrompt = () => {
             type: 'list',
             name: 'roleList',
             message: "Please select the employee's role.",
-            choices: ['Salesperson', 'Lead Engineer', 'Accountant', 'Lawyer']
+            choices: employeeRoles
         },
         {
             type: 'list',
@@ -112,13 +112,19 @@ const addEmployeePrompt = () => {
     ])
 };
 
-const updateEmployeePrompt = () => {
+const updateEmployeePrompt = (employees, employeeRoles) => {
     return inquirer.prompt([
         {
             type: 'list',
             name: 'employeeList',
             message: "Please select the employee you'd like to update.",
-            choices: []
+            choices: employees
+        },
+        {
+            type: 'list',
+            name: 'newRoleList',
+            message: "Please select the employee's new role.",
+            choices: employeeRoles
         }
     ])
 }
@@ -226,48 +232,99 @@ const recursivePrompt = () => {
             }
 
             if (promptData.options === 'Add employee') {
-                addEmployeePrompt()
-                    .then(employeePromptData => {
-                        
-                        
-                        params = [employeePromptData.employeeFirstName, employeePromptData.employeeLastName, employeePromptData.roleList, employeePromptData.managerList]
+                let newQuery = new sqlQuery();
 
-                       
-                        if (params[2] === 'Salesperson') {
-                            params[2] = 1;
-                        } else if (params[2] === 'Lead Engineer') {
-                            params[2] = 2;
-                        } else if (params[2] === 'Accountant') {
-                            params[2] = 3;
-                        } else {
-                            params[2] = 4;
-                        }
 
-                        if (params[3] === 'Rae') {
-                            params[3] = 1;
-                        } else {
-                            params[3] = null;
-                        }
+                newQuery.getEmployeeRoles().then((rows) => {
+                     
+ 
+                     let employeeRoles = rows.map(roles => {
+                         return roles.title;
+                     })
+ 
+                    addEmployeePrompt(employeeRoles)
+                        .then(employeePromptData => {
+                            
+                            
+                            params = [employeePromptData.employeeFirstName, employeePromptData.employeeLastName, employeePromptData.roleList, employeePromptData.managerList]
 
                         
+                            if (params[2] === 'Salesperson') {
+                                params[2] = 1;
+                            } else if (params[2] === 'Lead Engineer') {
+                                params[2] = 2;
+                            } else if (params[2] === 'Accountant') {
+                                params[2] = 3;
+                            } else {
+                                params[2] = 4;
+                            }
+
+                            if (params[3] === 'Rae') {
+                                params[3] = 1;
+                            } else {
+                                params[3] = null;
+                            }
+
+                            
 
 
-                        
+                            
 
-                            let newQuery = new sqlQuery();
-    
-                            newQuery.addEmployee(params).then(() => {
-                                console.log('Successfully added employee.');
-                                recursivePrompt();
-                            });
-    
-                    });
+                                let newQuery = new sqlQuery();
+        
+                                newQuery.addEmployee(params).then(() => {
+                                    console.log('Successfully added employee.');
+                                    recursivePrompt();
+                                });
+        
+                        });
+
+                });
                 
             }
-    
-    
-    
+
+            if (promptData.options === 'Update employee role') {
+                let newQuery = new sqlQuery();
+
+
+                newQuery.getAllEmployees().then((rows) => {
+                     
+ 
+                     let employees = rows.map(employee => {
+                         return employee.first_name + ' ' + employee.last_name;
+                     })
+                     
+                     newQuery.getEmployeeRoles().then((rows) => {
+                     
+ 
+                        let employeeRoles = rows.map(roles => {
+                            return roles.title;
+                        })
+
+                     updateEmployeePrompt(employees, employeeRoles)
+                        .then(promptData => {
+
+
+                            let params = [employees.indexOf(promptData.employeeList) + 1,
+                                            employeeRoles.indexOf(promptData.newRoleList) + 1]
+                            
+
+                            newQuery.updateEmployee(params).then(() => {
+                                console.log('Successfully updated employee.');
+                                    recursivePrompt();
+                            })
+
+
+
+                        })
+
+                     })
+                })
+            
+            }
         })
+    
+        
         .catch( err => {
             console.log(err);
         });

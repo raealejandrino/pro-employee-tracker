@@ -8,6 +8,20 @@ class Queries {
 
         return db.query(sql);
     }
+
+    getEmployeeRoles() {
+        const sql = `SELECT roles.title FROM roles;`
+
+        return db.query(sql);
+    }
+
+    getAllEmployees() {
+        const sql = `SELECT employees.first_name, employees.last_name FROM employees;`
+
+        return db.query(sql);
+    }
+
+    
     viewDepartments() {
         const sql = `SELECT * FROM department;`
 
