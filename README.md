@@ -38,3 +38,36 @@
 This repository is where I ([Rae Alejandrino](https://github.com/raealejandrino/)) develop a fully functioning employee tracker application using MySQL, Node.js, and Inquirer. Many companies worldwide recruit hundreds or even thousands of employees to work with them. Tracking data for each employee can get messy but with Pro Employee Tracker, keeping an organized workflow of your employees couldn't get easier!
 
 ## <img id="installing" src="./themes/neptune/menu-categories/installing.png" style="height: 40px">
+
+Once you have cloned the repo down from GitHub, you will want to run `npm install` in the command line to install all of the Node Modules needed to run the application.
+
+## <img id="usage" src="./themes/neptune/menu-categories/usage.png" style="height: 40px">
+
+In order to run this program locally you will need to:
+
+1. Clone this repository to receive all the files.
+2. Run `npm install` in the terminal to download all the needed dependencies (makes sure you are in the correct file directory).
+3. Run `node app` in the terminal to initialize the application.
+4. Select from the list of options to view, edit, add, or delete an employee from the database.
+
+## <img id="built_using" src="./themes/neptune/menu-categories/built-using.png" style="height: 40px">
+
+- JavaScript
+- Node.js
+- Inquirer
+- MySQL
+
+
+## <img id="authors" src="./themes/neptune/menu-categories/authors.png" style="height: 40px">
+
+- [@raealejandrino](https://github.com/raealejandrino)
+
+## <img id="questions" src="./themes/neptune/menu-categories/questions-alt.png" style="height: 40px">
+
+- Feel free to open an issue or contact me directly at raealejandrino@gmail.com if you have any questions about the repo. You can find more of my work at [raealejandrino](https://github.com/raealejandrino/).
+
+## License
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Licensed under the [MIT](LICENSE.txt) license.
