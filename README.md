@@ -1,7 +1,7 @@
 
 <p align="center">
     <a href="https://github.com/raealejandrino/pro-employee-tracker" rel="noopener">
-    <img src="./public/images/Pro-EMployee-Tracker.png" alt="Project logo"></a>
+    <img style="border-radius: 10%;" src="./public/images/Pro-EMployee-Tracker.png" alt="Project logo"></a>
 </p>
 
 
