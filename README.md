@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/raealejandrino/pro-employee-tracker" rel="noopener">
-    <img style="border-radius: 5%;"src="./lib/images/Pro-EMployee-tracker.png" alt="Project logo"></a>
+    <img  src="./public/images/Pro-EMployee-tracker.png" style="border-radius: 5%;" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Pro Employee Tracker</h3>
