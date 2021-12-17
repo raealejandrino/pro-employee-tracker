@@ -35,6 +35,9 @@
 
 ## <img id="about" src="./themes/neptune/menu-categories/about.png" style="height: 40px">
 
+[Video Demonstration](https://drive.google.com/file/d/18eLvzAqdbJC4DkuEEBANIUt2tZG6BCzh/view?usp=sharing)
+
+
 This repository is where I ([Rae Alejandrino](https://github.com/raealejandrino/)) develop a fully functioning employee tracker application using MySQL, Node.js, and Inquirer. Many companies worldwide recruit hundreds or even thousands of employees to work with them. Tracking data for each employee can get messy but with Pro Employee Tracker, keeping an organized workflow of your employees couldn't get easier!
 
 ## <img id="installing" src="./themes/neptune/menu-categories/installing.png" style="height: 40px">
@@ -47,8 +50,9 @@ In order to run this program locally you will need to:
 
 1. Clone this repository to receive all the files.
 2. Run `npm install` in the terminal to download all the needed dependencies (makes sure you are in the correct file directory).
+3. Change the `user` and `password` values to match your MySQL credentials in the `connection.js` file (Must navigate to the `./db` directory)
 3. Run `node app` in the terminal to initialize the application.
-4. Select from the list of options to view, edit, add, or delete an employee from the database.
+4. Select from the list of options to view, update, add, or delete an employee from the database.
 
 ## <img id="built_using" src="./themes/neptune/menu-categories/built-using.png" style="height: 40px">
 
